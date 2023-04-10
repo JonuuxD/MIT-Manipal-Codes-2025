@@ -1,3 +1,5 @@
+// A program for assignment problem by brute-force technique.
+
 #include<stdlib.h>
 #include<stdio.h>
 
