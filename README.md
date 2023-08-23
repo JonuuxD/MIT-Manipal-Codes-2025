@@ -1,1 +1,1 @@
-# Data-Structures-Algorithms
+# MIT-Manipal-Codes-2025
