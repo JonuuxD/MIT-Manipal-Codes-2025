@@ -2,29 +2,19 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int main() {
-    char oldPath[100];
-    char newPath[100];
+int main(int argc, char* argv[]) {
+    if (symlink(argv[1], argv[2]) == -1) {
+        perror("Error creating soft link");
+        exit(EXIT_FAILURE);
+    }
+    printf("Soft link created successfully at:  %s\n",argv[2]);
 
-    printf("Enter the existing file path: ");
-    scanf("%s", oldPath);
-
-    printf("Enter the path for the new symbolic link: ");
-    scanf("%s", newPath);
-
-    if (symlink(oldPath, newPath) == -1) {
-        perror("Error creating symbolic link");
+    if (unlink(argv[2]) == -1) {
+        perror("Error unlinking soft link");
         exit(EXIT_FAILURE);
     }
 
-    printf("Symbolic link created successfully at: %s\n", newPath);
-
-    if (unlink(newPath) == -1) {
-        perror("Error unlinking symbolic link");
-        exit(EXIT_FAILURE);
-    }
-
-    printf("Symbolic link unlinked successfully.\n");
+    printf("soft link unlinked successfully.\n");
 
     return 0;
 }
